@@ -10,19 +10,11 @@ import {
 import { AppComponent } from './app/app.component';
 import { APP_ROUTES } from './app/app.routes';
 import { NextFlightsModule } from './app/next-flights/next-flights.module';
-import { LoggerService } from './app/shared/logger/logger';
-import { LoggerConfig } from './app/shared/logger/logger-config';
 import { LogLevel } from './app/shared/logger/log-level';
-import {
-  DefaultLogFormatter,
-  LogFormatter,
-} from './app/shared/logger/log-formatter';
+
 import { CustomLogFormatter } from './app/shared/logger/custom-log-formatter';
-import {
-  CustomLogAppender,
-  DefaultLogAppender,
-  LOG_APPENDERS,
-} from './app/shared/logger/log-appender';
+import { CustomLogAppender } from './app/shared/logger/log-appender';
+import { provideLogger } from './app/shared/logger/provider';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -30,27 +22,10 @@ bootstrapApplication(AppComponent, {
     provideRouter(APP_ROUTES, withPreloading(PreloadAllModules)),
     importProvidersFrom(NextFlightsModule),
     importProvidersFrom(MatDialogModule),
-    LoggerService,
-    {
-      provide: LOG_APPENDERS,
-      useClass: DefaultLogAppender,
-      multi: true,
-    },
-    CustomLogAppender,
-    {
-      provide: LOG_APPENDERS,
-      useClass: CustomLogAppender,
-      multi: true,
-    },
-    {
-      provide: LoggerConfig,
-      useValue: {
-        level: LogLevel.INFO,
-      },
-    },
-    {
-      provide: LogFormatter,
-      useClass: CustomLogFormatter,
-    },
+    provideLogger({
+      level: LogLevel.INFO,
+      formatter: CustomLogFormatter,
+      appenders: [CustomLogAppender],
+    }),
   ],
 });

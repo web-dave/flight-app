@@ -225,7 +225,6 @@ To streamline this lab, the package `@angular/cdk` has already been installed in
     
     </details><br>
 
-
    **Hint:** The template will display the message alongside a `yes` and `no` button. When clicking these buttons, the dialog should be closed and `true` or `false` should be returned to the caller.
 
 1. Switch to the file `confirm.component.html` (`src/app/shared/confirm/confirm.component.html`) and implement the template:
@@ -312,13 +311,6 @@ Like a component also a directive can be referenced via a handle. For this, you 
 
    [...]
 
-      handleClick(shiftKey: boolean): void {
-        if (shiftKey) {
-          this.appClickWithWarning.emit();
-   -      return;
-        }
-
-        const ref = this.dialog.open<boolean>(ConfirmComponent, {
    ```
 
    </details><br>
@@ -702,7 +694,6 @@ Now, let's create a structural directive that represents a template for a field 
     ```
     
     </details><br>
-
 
    **Hint:** For testing the data table, add a property with a flights array containing some sample objects.
 

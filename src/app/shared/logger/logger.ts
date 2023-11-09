@@ -3,7 +3,7 @@ import { LogFormatter } from './log-formatter';
 import { LogLevel } from './log-level';
 import { LoggerConfig } from './logger-config';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class LoggerService {
   private formatter = inject(LogFormatter);
   private config = inject(LoggerConfig);

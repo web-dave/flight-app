@@ -17,6 +17,7 @@ import {
   DefaultLogFormatter,
   LogFormatter,
 } from './app/shared/logger/log-formatter';
+import { CustomLogFormatter } from './app/shared/logger/custom-log-formatter';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -33,7 +34,7 @@ bootstrapApplication(AppComponent, {
     },
     {
       provide: LogFormatter,
-      useClass: DefaultLogFormatter,
+      useClass: CustomLogFormatter,
     },
   ],
 });

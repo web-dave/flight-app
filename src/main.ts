@@ -18,6 +18,11 @@ import {
   LogFormatter,
 } from './app/shared/logger/log-formatter';
 import { CustomLogFormatter } from './app/shared/logger/custom-log-formatter';
+import {
+  CustomLogAppender,
+  DefaultLogAppender,
+  LOG_APPENDERS,
+} from './app/shared/logger/log-appender';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -26,6 +31,17 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(NextFlightsModule),
     importProvidersFrom(MatDialogModule),
     LoggerService,
+    {
+      provide: LOG_APPENDERS,
+      useClass: DefaultLogAppender,
+      multi: true,
+    },
+    CustomLogAppender,
+    {
+      provide: LOG_APPENDERS,
+      useClass: CustomLogAppender,
+      multi: true,
+    },
     {
       provide: LoggerConfig,
       useValue: {

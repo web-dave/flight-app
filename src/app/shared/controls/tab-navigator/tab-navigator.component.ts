@@ -1,5 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TabbedPaneService } from '../tabbed-pane/tabbed-pane.service';
 
 @Component({
   selector: 'app-tab-navigator',
@@ -8,10 +16,19 @@ import { CommonModule } from '@angular/common';
   templateUrl: './tab-navigator.component.html',
   styleUrls: ['./tab-navigator.component.css'],
 })
-export class TabNavigatorComponent {
+export class TabNavigatorComponent implements OnInit {
   @Input() page = 0;
   @Input() pageCount = 0;
   @Output() pageChange = new EventEmitter<number>();
+
+  service = inject(TabbedPaneService);
+
+  ngOnInit(): void {
+    this.service.pageCount.subscribe(
+      (pageCount) => (this.pageCount = pageCount)
+    );
+    this.service.currentPage.subscribe((page) => (this.page = page));
+  }
 
   prev(): void {
     this.page--;
@@ -19,6 +36,7 @@ export class TabNavigatorComponent {
       this.page = this.pageCount - 1;
     }
     this.pageChange.emit(this.page);
+    this.service.currentPage.next(this.page);
   }
 
   next(): void {
@@ -27,5 +45,6 @@ export class TabNavigatorComponent {
       this.page = 0;
     }
     this.pageChange.emit(this.page);
+    this.service.currentPage.next(this.page);
   }
 }

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TabComponent } from '../shared/controls/tab/tab.component';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TabComponent],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css'],
 })

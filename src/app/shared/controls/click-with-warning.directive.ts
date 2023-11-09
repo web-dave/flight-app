@@ -1,12 +1,10 @@
 import { Dialog } from '@angular/cdk/dialog';
 import {
   Directive,
-  ElementRef,
   EventEmitter,
   HostBinding,
   HostListener,
   Input,
-  OnInit,
   Output,
   inject,
 } from '@angular/core';
@@ -15,6 +13,7 @@ import { ConfirmComponent } from '../confirm/confirm.component';
 @Directive({
   selector: '[appClickWithWarning]',
   standalone: true,
+  exportAs: 'clickWithWarning',
 })
 export class ClickWithWarningDirective {
   @Input() warning = 'Are you sure?';

@@ -13,4 +13,8 @@
     <p>No cancelled flights!</p>
   </app-tab>
 </app-tabbed-pane>
-<button (appClickWithWarning)="deleteAll()">Delete All!</button>
+<button (appClickWithWarning)="deleteAll()" #cww="clickWithWarning">
+  Delete All!
+</button>
+<hr />
+<button (click)="cww.handleClick(true)">Delete Short</button>

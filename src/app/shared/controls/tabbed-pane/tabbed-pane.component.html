@@ -8,12 +8,14 @@
   </div>
 
   <app-tab-navigator
-  #navigator
-  [page]="this.currentPage"
-  [pageCount]="this.tabs.length"
-  (pageChange)="pageChange($event)"
-/>
+    #navigator
+    [page]="this.currentPage"
+    [pageCount]="this.tabs.length"
+    (pageChange)="pageChange($event)"
+    [(title)]="foo"
+  ></app-tab-navigator>
   <ng-content></ng-content>
   <button (click)="navigator.prev()">prev</button>
   <button (click)="navigator.next()">next</button>
 </div>
+<h1>{{ foo }}</h1>

@@ -12,6 +12,7 @@ import { TabNavigatorComponent } from '../tab-navigator/tab-navigator.component'
 })
 export class TabbedPaneComponent implements AfterContentInit {
   // @ContentChildren(TabComponent)
+  foo = 'Hallo';
   tabs: TabComponent[] = [];
   activeTab: TabComponent | undefined;
   currentPage = 0;

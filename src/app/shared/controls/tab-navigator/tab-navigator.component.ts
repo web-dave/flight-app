@@ -13,6 +13,9 @@ export class TabNavigatorComponent {
   @Input() pageCount = 0;
   @Output() pageChange = new EventEmitter<number>();
 
+  @Input() title = '';
+  @Output() titleChange = new EventEmitter<string>();
+
   prev(): void {
     this.page--;
     if (this.page < 0) {
@@ -27,5 +30,7 @@ export class TabNavigatorComponent {
       this.page = 0;
     }
     this.pageChange.emit(this.page);
+
+    this.titleChange.emit('kdjfghas');
   }
 }

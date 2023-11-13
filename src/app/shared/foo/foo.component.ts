@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -6,8 +12,13 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './foo.component.html',
-  styleUrl: './foo.component.css'
+  styleUrl: './foo.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooComponent {
-
+export class FooComponent implements OnChanges {
+  @Input() numbers: number[] = [];
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+  }
+  @Input({ required: true }) user = { name: 'Kalle' };
 }

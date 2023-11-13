@@ -16,7 +16,7 @@ import { FlightCardComponent } from '../flight-card/flight-card.component';
 export class FlightSearchComponent {
   from = 'London';
   to = 'Paris';
-  flights: Array<Flight> = [];
+  // flights: Array<Flight> = [];
   selectedFlight: Flight | undefined;
   message = '';
 
@@ -24,22 +24,18 @@ export class FlightSearchComponent {
     3: true,
     5: true,
   };
+  get flights(): Flight[] {
+    return this.flightService.flights;
+  }
 
   private flightService = inject(FlightService);
-
+  delay(): void {
+    this.flightService.delay();
+  }
   search(): void {
     // Reset properties
     this.message = '';
     this.selectedFlight = undefined;
-
-    this.flightService.find(this.from, this.to).subscribe({
-      next: (flights) => {
-        this.flights = flights;
-      },
-      error: (errResp) => {
-        console.error('Error loading flights', errResp);
-      },
-    });
   }
 
   select(f: Flight): void {

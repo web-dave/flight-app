@@ -6,10 +6,14 @@
       }}</a>
     </span>
   </div>
+
   <app-tab-navigator
+  #navigator
   [page]="this.currentPage"
   [pageCount]="this.tabs.length"
   (pageChange)="pageChange($event)"
 />
   <ng-content></ng-content>
+  <button (click)="navigator.prev()">prev</button>
+  <button (click)="navigator.next()">next</button>
 </div>

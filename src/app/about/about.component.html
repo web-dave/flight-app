@@ -13,3 +13,12 @@
     <p>No cancelled flights!</p>
   </app-tab>
 </app-tabbed-pane>
+
+<button (appMy)="ping($event)" [tmpl]="myTmpl">Click mich</button>
+<h2>Tach</h2>
+
+<ng-template #myTmpl let-text="$implicit" let-class="class">
+  <div [class]="class">
+    <h1>{{ text }}</h1>
+  </div>
+</ng-template>

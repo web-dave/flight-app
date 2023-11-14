@@ -14,8 +14,19 @@
   </app-tab>
 </app-tabbed-pane>
 
+<button (appClickWithWarning)="deleteAll()">Delete All!</button>
+
 <button (appMy)="ping($event)" [tmpl]="myTmpl">Click mich</button>
 <h2>Tach</h2>
+
+<input [appTooltip]="ttmpl" />
+
+<ng-template #ttmpl let-title let-body="text">
+  <h4>{{ title }}</h4>
+  <p>
+    {{ body }}
+  </p>
+</ng-template>
 
 <ng-template #myTmpl let-text="$implicit" let-class="class">
   <div [class]="class">

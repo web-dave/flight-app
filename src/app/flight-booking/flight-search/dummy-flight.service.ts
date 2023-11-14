@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { NEVER, Observable, of } from 'rxjs';
 import { Flight } from '../../model/flight';
 import { FlightService } from './flight.service';
 
 @Injectable()
 export class DummyFlightService implements FlightService {
   flights: Flight[] = [];
+  flights$: Observable<Flight[]> = NEVER;
 
   load(from: string, to: string): void {
     this.find(from, to).subscribe((flights) => {
       this.flights = flights;
+      this.flights$ = of(this.flights);
     });
   }
 
@@ -42,9 +44,5 @@ export class DummyFlightService implements FlightService {
     );
 
     return of(result);
-  }
-
-  findById(id: string): Observable<Flight> {
-    throw new Error('Method not implemented.');
   }
 }

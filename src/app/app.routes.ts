@@ -8,6 +8,7 @@ import { MeComponent } from './shared/me/me.component';
 import { FooterMeComponent } from './shared/footer-me/footer-me.component';
 import { goAwayGuard } from './shared/go-away.guard';
 import { debounceTime, map, of, timer } from 'rxjs';
+import { BasketComponent } from './basket/basket.component';
 
 export const APP_ROUTES: Routes = [
   {
@@ -20,7 +21,11 @@ export const APP_ROUTES: Routes = [
     component: HomeComponent,
     canActivate: [goAwayGuard],
   },
-
+  {
+    path: 'basket',
+    component: BasketComponent,
+    outlet: 'aux',
+  },
   {
     path: '',
     resolve: {
@@ -50,7 +55,7 @@ export const APP_ROUTES: Routes = [
           {
             path: '',
             component: FooterMeComponent,
-            outlet: 'aux',
+            outlet: 'about-footer',
           },
         ],
       },

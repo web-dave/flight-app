@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TabComponent } from '../shared/controls/tab/tab.component';
 import { TabbedPaneComponent } from '../shared/controls/tabbed-pane/tabbed-pane.component';
@@ -7,6 +7,7 @@ import { TooltipDirective } from '../shared/tooltip.directive';
 import { Flight } from '../model/flight';
 import { DataTableComponent } from '../shared/controls/data-table/data-table.component';
 import { TableFieldDirective } from '../shared/controls/data-table/table-field.directive';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-about',
@@ -21,9 +22,11 @@ import { TableFieldDirective } from '../shared/controls/data-table/table-field.d
     TooltipDirective,
     DataTableComponent,
     TableFieldDirective,
+    RouterOutlet,
   ],
 })
 export class AboutComponent {
+  route = inject(ActivatedRoute);
   flights: Flight[] = [
     {
       id: 1,

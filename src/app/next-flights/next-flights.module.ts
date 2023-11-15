@@ -12,4 +12,4 @@ import { NEXT_FLIGHTS_ROUTES } from './next-flights.routes';
   providers: [NextFlightsService],
   exports: [NextFlightsComponent],
 })
-export class NextFlightsModule {}
+export default class NextFlightsModule {}

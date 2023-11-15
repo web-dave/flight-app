@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FlightSearchComponent } from './flight-booking/flight-search/flight-search.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { NextFlightsModule } from './next-flights/next-flights.module';
 import { ConfigService } from './shared/config.service';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
@@ -12,7 +11,6 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     SidebarComponent,
     NavbarComponent,
     FlightSearchComponent,
-    NextFlightsModule,
     RouterOutlet,
   ],
   selector: 'app-root',

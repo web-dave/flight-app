@@ -4,6 +4,10 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ConfigService } from './shared/config.service';
+import { MeComponent } from './shared/me/me.component';
+import { FooterMeComponent } from './shared/footer-me/footer-me.component';
+import { goAwayGuard } from './shared/go-away.guard';
+import { debounceTime, map, of, timer } from 'rxjs';
 
 export const APP_ROUTES: Routes = [
   {
@@ -14,6 +18,7 @@ export const APP_ROUTES: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [goAwayGuard],
   },
 
   {
@@ -28,14 +33,26 @@ export const APP_ROUTES: Routes = [
       },
       {
         path: 'next-flights',
-        loadChildren: () =>
-          import('./next-flights/next-flights.module').then(
-            (m) => m.NextFlightsModule
-          ),
+        loadChildren: () => import('./next-flights/next-flights.module'),
       },
       {
         path: 'about',
         component: AboutComponent,
+        resolve: {
+          userData: () =>
+            timer(1500).pipe(map(() => ({ name: 'Ammon', age: 26 }))),
+        },
+        children: [
+          {
+            path: '',
+            component: MeComponent,
+          },
+          {
+            path: '',
+            component: FooterMeComponent,
+            outlet: 'aux',
+          },
+        ],
       },
 
       // This _needs_ to be the last route!!

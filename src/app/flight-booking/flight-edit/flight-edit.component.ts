@@ -23,8 +23,8 @@ import { ConfirmComponent } from 'src/app/shared/confirm/confirm.component';
     ValidationErrorsComponent,
     CityValidatorDirective,
     AsyncCityValidatorDirective,
-    RoundtripValidatorDirective,
-  ],
+    RoundtripValidatorDirective
+],
   templateUrl: './flight-edit.component.html',
   styleUrls: ['./flight-edit.component.css'],
 })

@@ -20,8 +20,8 @@ import { TableFieldDirective } from '../shared/controls/data-table/table-field.d
     ClickWithWarningDirective,
     TooltipDirective,
     DataTableComponent,
-    TableFieldDirective,
-  ],
+    TableFieldDirective
+],
 })
 export class AboutComponent {
   flights: Flight[] = [

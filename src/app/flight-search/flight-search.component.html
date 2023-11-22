@@ -16,8 +16,18 @@
     <button (click)="search()" class="btn btn-default">Search</button>
   </div>
 </form>
-
-<table class="table table-condensed" *ngIf="flights.length > 0">
+<button (click)="show = !show">hide</button>
+<div *ngIf="flights$ | async as flightz">
+  <app-flight-card *ngIf="show" [item]="flightz[0]" [(selected)]="selected">
+    <h1>Moin</h1>
+  </app-flight-card>
+  <br />
+  <br />
+  <br />
+  <br />
+</div>
+<h1>{{ selected }}</h1>
+<table class="table table-condensed" *ngIf="flights$ | async as flights">
   <thead>
     <tr>
       <th>Id</th>

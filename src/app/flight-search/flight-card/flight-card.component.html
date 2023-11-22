@@ -1,0 +1,5 @@
+<pre>{{ item | json }}</pre>
+<input type="checkbox" [checked]="selected" />
+<ng-content></ng-content>
+<button (click)="select($event)">Ja</button>
+<button (click)="deselect()">Nein</button>

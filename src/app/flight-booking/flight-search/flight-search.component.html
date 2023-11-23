@@ -2,10 +2,18 @@
   <h2 class="title">Flight Search</h2>
 </div>
 
-<form>
+<form #travelForm="ngForm">
+  {{ travelForm["value"] | json }}
   <div class="form-group">
     <label>From:</label>
-    <input [(ngModel)]="from" name="from" class="form-control" />
+    <input
+      [(ngModel)]="from"
+      required
+      minlength="3"
+      name="from"
+      class="form-control"
+    />
+    {{ from }}
   </div>
   <div class="form-group">
     <label>To:</label>
